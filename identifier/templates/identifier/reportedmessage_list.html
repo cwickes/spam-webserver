@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		{% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'identifier/style.css' %}">
+	</head>
+
+	<body>
+		<!-- List of messages -->
+		<table>
+			<tr>
+				<th>Message Info</th>
+				<th>Report Date</th>
+				<th>Reviewed By</th>
+				<th>Is Safe?</th>
+			</tr>
+			{% for report in page_obj %}
+				<tr>
+					<td>Sent from {{ report.sender }}<br>
+						<a href="/identifier/{{ report.id }}/">Review</a>
+					</td>
+					<td>{{ report.report_date }}</td>
+					<td>{{ report.reviewed_by }}</td>
+					<td>{{ report.is_safe }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+
+		<!-- Next/previous page options -->
+		<div class="pagination">
+			<span class="step-links">
+				{% if page_obj.has_previous %}
+					<a href="?page={{ page_obj.previous_page_number }}">previous</a>
+				{% endif %}
+
+				{% if page_obj.has_next %}
+					<a href="?page={{ page_obj.next_page_number }}">next</a>
+				{% endif %}
+			</span>
+		</div>
+	</body>
+
+</html>
