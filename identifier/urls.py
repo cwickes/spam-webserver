@@ -4,4 +4,5 @@ from identifier import views
 urlpatterns = [
 	path('', views.ReportedMessageView.as_view(), name='reports'),
 	path('<int:pk>/', views.ReviewMessageView.as_view(), name='review'),
+	path('api/', views.ReportMessage.as_view(), name='api'),
 ]
